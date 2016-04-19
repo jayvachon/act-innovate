@@ -1,0 +1,57 @@
+<!doctype html>
+
+<html ng-app="act-innovate">
+	<head>
+		<base href="/" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div ng-controller="MainController as mainCtrl" class="wrapper">
+			<div class="full-container">
+				<div class="sky" ng-style="style('sky')">
+					<div id="sun"></div>
+				</div>
+				<div id="earth-container">
+					<img src="img/earth.png" id="earth" ng-style="style('earth')">
+				</div>
+			</div>
+			<div class="overlay-container">
+
+				<!-- Show options -->
+				<div ng-hide="mainCtrl.optionSelected">
+					<p>by visiting this page you have raised the sea by 1% :(</p>
+					<p>you can offset your footprint by choosing one of these options:</p>
+					<ul>
+						<li>
+							<form ng-submit="mainCtrl.innovate()">
+								<button type="submit" class="btn btn-primary btn-lg">innovate</button>
+							</form>
+						</li>
+						<li>
+							<form ng-submit="mainCtrl.act()">
+								<button type="submit" class="btn btn-primary btn-lg">act</button>
+							</form>
+						</li>
+					</ul>
+				</div>
+
+				<!-- Show act result -->
+				<div ng-show="mainCtrl.optionSelected=='act'">
+					<p>thanks to your action the sea has lowered :)</p>
+				</div>
+
+				<!-- Show innovate result -->
+				<div ng-show="mainCtrl.optionSelected=='innovate'">
+					<p>please share this link. once 5 people have clicked through the sea will lower :)</p>
+					<a href="http://localhost:8000/{{innovateLink}}">http://localhost:8000/{{innovateLink}}</a>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+	</body>
+</html>
